@@ -32,141 +32,163 @@ Publish the website in the LocalHost.
 
 ## PROGRAM:
 ```
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Cover</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-        }
-        .cover {
-            width: 100%;
-            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            align-items: center;
+            height: 100vh;
         }
-        .cover::before {
-            content: "";
+
+        .book-cover {
+            position: relative;
+            width: 600px;
+            height: 800px;
+            border-radius: 15px;
+            border: 4px solid #ff3366;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.3);
+            background: radial-gradient(circle, #ff9a8b, #ff3366);
+            overflow: hidden;
+        }
+
+        .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: repeating-linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.1) 0,
-                rgba(255, 255, 255, 0.1) 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            z-index: 0;
+            background: rgba(0, 0, 0, 0.3);
         }
-        .top-banner {
+
+        .content {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 30%;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
-            clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 100%);
-            z-index: 1;
+            height: 100%;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
+
         .title {
-            text-align: center;
-            color: #ffffff;
-            font-size: 2.5rem;
-            margin: 1rem 0;
-            font-weight: bold;
-            z-index: 2;
-            position: relative;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fffbf5;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
         }
-        .new-quote {
-            text-align: center;
-            color: #e0f7fa;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            font-weight: 500;
-            z-index: 2;
-            position: relative;
-        }
+
         .subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #f1f1f1;
-            margin-bottom: 1.5rem;
-            z-index: 2;
-            position: relative;
+            font-size: 22px;
+            font-weight: 300;
+            color: #ffe0b2;
+            margin-bottom: 40px;
+            font-style: italic;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
         }
-        .edition {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #b3e5fc;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            z-index: 2;
-            position: relative;
-        }
-        .author {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 2rem;
-            color: #ffffff;
-            z-index: 2;
-            position: relative;
-        }
-        .photo {
-            border: 5px solid #ffffff;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-top: 1rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            z-index: 2;
-            position: relative;
-        }
-        .bottom-banner {
+
+        .bottom-section {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: 40px;
             width: 100%;
-            height: 20%;
-            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.7));
-            clip-path: polygon(0 0, 100% 40%, 100% 100%, 0% 100%);
-            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        .edition-author {
+            text-align: left;
+        }
+
+        .edition {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fffbf5;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .author {
+            font-size: 20px;
+            color: #fffbf5;
+            font-weight: 500;
+            margin-top: 5px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-sec {
+            text-align: center;
+        }
+
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff3366;
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .institution {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fffbf5;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Decorative patterns */
+        .pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/diagonal-stripes.png');
+            opacity: 0.15;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
-    <div class="cover">
-        <div class="top-banner"></div>
-        <div class="edition">Third Edition</div>
-        <div class="title">Response Web Design in HTML and CSS</div>
-        <div class="new-quote">"Designing the future, one responsive site at a time."</div>
-        <div class="subtitle">Develop future-proof websites using the latest technologies</div>
-        <img src="web.png" alt="Author Photo" class="photo">
-        <div class="author">Sathish B</div>
-        <div class="bottom-banner"></div>
+    <div class="book-cover">
+        <div class="pattern"></div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="title">The Web Design Blueprint</h1>
+            <p class="subtitle">Crafting Exceptional Digital Experiences with Design Excellence</p>
+            <div class="bottom-section">
+                <div class="edition-author">
+                    <p class="edition">Tenth Edition</p>
+                    <p class="author">SATHISH.B</p>
+                </div>
+                <div class="profile-sec">
+                    <img src="photo.png" alt="Author's Photo" class="author-photo">
+                    <p class="institution">SEC</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+
  ```
 
 ## OUTPUT:
-![alt text](<sasi/myapp/static/Screenshot (43).png>)
-
+![alt text](<Screenshot (56).png>)
 ## RESULT:
 The program for designing book front cover page using HTML and CSS is completed successfully.
